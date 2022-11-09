@@ -25,11 +25,11 @@ const CurrentWeather = ({ data }) => {
               <Grid item xs={6}>
                 <p style={{ fontSize: 30 }}>{data.city}</p>
                 <p style={{ fontSize: 20 }}>{data.weather[0].description}</p>
-                <p style={{ fontSize: 70 }}>{Math.round(data.main.temp)}°C</p>
+                <p style={{ fontSize: 50 }}>{Math.round(data.main.temp)}°C</p>
               </Grid>
               <Grid item xs={6}>
-                <img src={`icons/${data.weather[0].icon}.png`} alt="weather" />
-                <p style={{ color: "black", fontWeight: "bold", fontSize: 30 }}>
+                <img width={100} height={100} src={`icons/${data.weather[0].icon}.png`} alt="weather" />
+                <p style={{ color: "black", fontWeight: "bold", fontSize: 20 }}>
                   Details
                 </p>
                 <div
