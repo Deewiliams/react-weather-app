@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import Search from "./Components/Search/Search";
 import CurrentWeather from "./Components/CurrentWeather/CurrentWeather";
+import Forecast from "./Components/Forecast/Forecast";
 import { WEATHER_API_URL,WEATHER_API_KEY } from "./api";
 
 import { Container } from "@material-ui/core";
@@ -36,6 +37,7 @@ function App() {
       <Container>
       <Search onSearchChange={handleOnSearchChange} />
       {currentWeather && <CurrentWeather data={currentWeather} />}
+      {forecast && <Forecast data={forecast} />}
       </Container>
       
     </div>
