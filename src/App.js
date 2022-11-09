@@ -1,3 +1,4 @@
+import React,{useState} from "react";
 import Search from "./Components/Search/Search";
 import CurrentWeather from "./Components/CurrentWeather/CurrentWeather";
 import { WEATHER_API_URL,WEATHER_API_KEY } from "./api";
@@ -5,6 +6,8 @@ import { WEATHER_API_URL,WEATHER_API_KEY } from "./api";
 import { Container } from "@material-ui/core";
 
 function App() {
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [forecast, setForecast] = useState(null);
   
   const handleOnSearchChange = (searchData) => {
     const [lat, lon] = searchData.value.split(" ");
@@ -21,10 +24,9 @@ function App() {
         const weatherResponse = await response[0].json();
         const forcastResponse = await response[1].json();
 
-        // setCurrentWeather({ city: searchData.label, ...weatherResponse });
-        // setForecast({ city: searchData.label, ...forcastResponse });
-        console.log("currentWeatherFetch", weatherResponse);
-        console.log("forecastFetch", forcastResponse);
+        setCurrentWeather({ city: searchData.label, ...weatherResponse });
+        console.log('weatherResponse',weatherResponse);
+        setForecast({ city: searchData.label, ...forcastResponse });
       })
       .catch(console.log);
     };
@@ -33,7 +35,7 @@ function App() {
     <div className="App">
       <Container>
       <Search onSearchChange={handleOnSearchChange} />
-      <CurrentWeather />
+      {currentWeather && <CurrentWeather data={currentWeather} />}
       </Container>
       
     </div>

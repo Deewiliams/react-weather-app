@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CurrentWeather = () => {
+const CurrentWeather = ({data}) => {
     const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -26,7 +26,9 @@ const CurrentWeather = () => {
           <Paper className={classes.paper}>title</Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>image</Paper>
+          <Paper className={classes.paper}>
+            <img  src={`icons/${data.weather[0].icon}.png`} alt="weather" />
+          </Paper>
         </Grid>
           </Grid>
           </Paper>
