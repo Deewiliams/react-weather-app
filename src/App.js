@@ -26,7 +26,6 @@ function App() {
         const forcastResponse = await response[1].json();
 
         setCurrentWeather({ city: searchData.label, ...weatherResponse });
-        console.log('weatherResponse',weatherResponse);
         setForecast({ city: searchData.label, ...forcastResponse });
       })
       .catch(console.log);
