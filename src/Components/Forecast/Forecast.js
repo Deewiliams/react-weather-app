@@ -14,13 +14,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     flexBasis: "33.33%",
     flexShrink: 0,
-    
-
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
-    padding: 8
+    padding: 8,
   },
 }));
 
@@ -39,7 +37,6 @@ const Forecast = ({ data }) => {
   const forecastDays = WEEK_DAYS.slice(dayInAWeek, WEEK_DAYS.length).concat(
     WEEK_DAYS.slice(0, dayInAWeek)
   );
-  console.log("days", forecastDays);
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -61,54 +58,48 @@ const Forecast = ({ data }) => {
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
-             <div>
-             <Typography className={classes.heading}>
-              <img
-              width={50}
-              height={50}
-              src={`icons/${item.weather[0].icon}.png`}
-              className="icon-small"
-              alt="weather"
-            />
+            <div>
+              <Typography className={classes.heading}>
+                <img
+                  width={50}
+                  height={50}
+                  src={`icons/${item.weather[0].icon}.png`}
+                  className="icon-small"
+                  alt="weather"
+                />
               </Typography>
-             </div>
-             <Typography className={classes.secondaryHeading}>
-             {forecastDays[idx]}
-             
-            
-           </Typography>
-           
+            </div>
             <Typography className={classes.secondaryHeading}>
-             
+              {forecastDays[idx]}
+            </Typography>
+            <Typography className={classes.secondaryHeading}>
               {item.weather[0].description}
             </Typography>
-            <Typography className={classes.secondaryHeading}>
-            </Typography>
+            <Typography className={classes.secondaryHeading}></Typography>
             <Typography className={classes.secondaryHeading}>
               {Math.round(item.main.temp_max)}°C /
               {Math.round(item.main.temp_min)}°C
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              <label>Pressure:</label>
-              <label>{item.main.pressure}</label>
-
-              <label>Humidity:</label>
-              <label>{item.main.humidity}</label>
-
-              <label>Clouds:</label>
-              <label>{item.clouds.all}%</label>
-
-              <label>Wind speed:</label>
-              <label>{item.wind.speed} m/s</label>
-
-              <label>Sea level:</label>
-              <label>{item.main.sea_level}m</label>
-
-              <label>Feels like:</label>
-              <label>{item.main.feels_like}°C</label>
-            </Typography>
+            <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: 'center' }}>
+              <div>
+                <p>Pressure:</p>
+                <p>Humidity:</p>
+                <p>Clouds:</p>
+                <p>Wind speed: </p>
+                <p>Sea level:</p>
+                <p>Feels like:</p>
+              </div>
+              <div style={{fontWeight: 'bold'}} >
+                <p> {item.main.pressure}</p>
+                <p> {item.main.humidity}</p>
+                <p> {item.clouds.all}%</p>
+                <p> {item.wind.speed} m/s</p>
+                <p> {item.main.sea_level}m</p>
+                <p> {item.main.feels_like}°C</p>
+              </div>
+            </div>
           </AccordionDetails>
         </Accordion>
       ))}
